@@ -22,4 +22,5 @@ Anh em ctrl+C thì khi ctrl+V và submit đâu đó nhớ sửa tên biến, l�
 Chúc anh em vui vẻ, và không bị ngập đầu vì bug.
 
 Pray for one hit AC.
+
 Best regards.
