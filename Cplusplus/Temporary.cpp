@@ -14,9 +14,8 @@ Giải thuật 1: Giải thuật từ trang web.
 
 Giải quyết các bài toán con:
 Bài toán 1: Tìm độ dài dài nhất trong cây:
-Ý tưởng: tại mỗi đỉnh, đưa nó lên làm gốc của cây, tìm 2 lá xa thứ nhất và xa thứ nhì so với đỉnh đó:
+Ý tưởng: tại mỗi đỉnh, đưa nó lên làm gốc của cây không chứa nhánh trên của đường đi DFS, tìm 2 lá xa thứ nhất và xa thứ nhì so với đỉnh đó:
 
-//Trả về độ dài lớn nhất cây con gốc u sau khi bỏ cạnh (u,v)
 int dfs(vector<int> g[], int& curMax, int u, int v) { 
     // To find lengths of first and second maximum 
     // in subtrees. currMax is to store overall 
@@ -53,3 +52,40 @@ int dfs(vector<int> g[], int& curMax, int u, int v) {
     return total; 
 }
 
+Bài toán 2: Bỏ cạnh của cây. Tìm kết quả của bài toán.
+Ý tưởng: Trong khi duyệt dfs ở trên, khi tới đỉnh mới, ta kiểm tra xem đỉnh mới là là cha của nó không, ngầm định là cắt cạnh đó.
+
+// method returns maximum product of length of 
+// two non-intersecting paths 
+int maxProductOfTwoPaths(vector<int> g[], int N) 
+{ 
+    int res = INT_MIN; 
+    int path1, path2; 
+  
+    // one by one removing all edges and calling 
+    // dfs on both subtrees 
+    for (int i = 0; i < N; i++) 
+    { 
+        for (int j = 0; j < g[i].size(); j++) 
+        { 
+            // calling dfs on subtree rooted at 
+            // g[i][j], excluding edge from g[i][j] 
+            // to i. 
+            int curMax = 0; 
+            path1 = dfs(g, curMax, g[i][j], i); 
+  
+            //  calling dfs on subtree rooted at 
+            // i, edge from i to g[i][j] 
+            curMax = 0; 
+            path2 = dfs(g, curMax, i, g[i][j]); 
+  
+            res = max(res, path1 * path2); 
+        } 
+    } 
+    return res; 
+}
+
+Độ phức tạp của hàm dfs là O(n), của hàm maxProductOfTwoPaths là O(n);
+Vậy độ phức tạp của bài toán là O(n^2)
+
+Giải thuật 2: Tự cải tiến, có thể sai sót nhờ mọi người đóng góp ý kiến.
