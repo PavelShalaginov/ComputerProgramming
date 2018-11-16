@@ -88,4 +88,4 @@ int maxProductOfTwoPaths(vector<int> g[], int N)
 Độ phức tạp của hàm dfs là O(n), của hàm maxProductOfTwoPaths là O(n);
 Vậy độ phức tạp của bài toán là O(n^2)
 
-Giải thuật 2: Tự cải tiến, có thể sai sót nhờ mọi người đóng góp ý kiến.
+Giải thuật 2: Sau khi viết thật dài thì nó khó là giải thích tường mmình, sử dụng kĩ thuật "đảo đỉnh".
